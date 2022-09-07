@@ -1,6 +1,4 @@
-import * as core from '@actions/core'
 import { getInput, setSecret, debug, setOutput, setFailed } from '@actions/core';
-import {wait} from './wait'
 import AWS from 'aws-sdk/global';
 import Lambda from 'aws-sdk/clients/lambda'
 
@@ -80,15 +78,16 @@ async function run(): Promise<void> {
       FunctionName : getInput(functionNameInput)
     };
 
-    const response = lambda.waitFor('functionUpdatedV2', params, (error, data) => {
+    lambda.waitFor('functionUpdatedV2', params, (error, data) => {
       if (error){
-        core.setFailed(error.message + error.stack);
+        setFailed(error.message);
       }
+      debug(JSON.stringify(data))
       setOutput("update-status", data.Configuration?.LastUpdateStatus);
     })
     
   } catch (error) {
-    if (error instanceof Error) core.setFailed(error.message)
+    if (error instanceof Error) setFailed(error.message)
   }
 }
 

@@ -2,10 +2,9 @@ name: 'wait-for-lambda-update'
 description: 'Waits for lambda update completion. Use after lambda creation or update.'
 author: 'algemito'
 inputs:
-  function-name: # change this
+  function-name:
     required: true
     description: "The name of your lambda function"
-    default: ''
   AWS_ACCESS_KEY_ID:
     description: "AWS_ACCESS_KEY_ID"
     required: true
