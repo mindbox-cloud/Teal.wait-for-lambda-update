@@ -1,11 +1,33 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'wait-for-lambda-update'
+description: 'Waits for lambda update completion. Use after lambda creation or update.'
+author: 'algemito'
 inputs:
-  milliseconds: # change this
+  function-name: # change this
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: "The name of your lambda function"
+    default: ''
+  AWS_ACCESS_KEY_ID:
+    description: "AWS_ACCESS_KEY_ID"
+    required: true
+  AWS_SECRET_ACCESS_KEY:
+    description: "AWS_SECRET_ACCESS_KEY"
+    required: true
+  AWS_SESSION_TOKEN:
+    description: "AWS_SESSION_TOKEN"
+    required: false
+  REGION:
+    description: "region where the lambda has been created (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)"
+    required: false
+    default: us-east-1
+  HTTP_TIMEOUT:
+    description: Sets the socket to timeout after timeout milliseconds of inactivity on the socket. Defaults to two minutes (120000)
+    required: false
+  MAX_RETRIES:
+    description: Returns the maximum amount of retries to perform for a service request. By default this value is calculated by the specific service object that the request is being made to.
+    required: false
+outputs:
+  update-status:
+    description: "update status of the function"
 runs:
   using: 'node16'
   main: 'dist/index.js'
