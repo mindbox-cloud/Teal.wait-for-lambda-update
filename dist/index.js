@@ -15,7 +15,7 @@ const global_1 = __importDefault(__nccwpck_require__(5512));
 const lambda_1 = __importDefault(__nccwpck_require__(3321));
 ;
 ;
-const functionNameInput = "function-name";
+const functionNameInput = "function_name";
 const setAWSCredentials = () => {
     const accessKeyId = (0, core_1.getInput)("AWS_ACCESS_KEY_ID" /* AWSCredentials.AWS_ACCESS_KEY_ID */);
     (0, core_1.setSecret)(accessKeyId);
@@ -57,7 +57,7 @@ function run() {
                 (0, core_1.setFailed)(error.message);
             }
             (0, core_1.debug)(JSON.stringify(data));
-            (0, core_1.setOutput)("update-status", (_a = data.Configuration) === null || _a === void 0 ? void 0 : _a.LastUpdateStatus);
+            (0, core_1.setOutput)("function_name", (_a = data.Configuration) === null || _a === void 0 ? void 0 : _a.LastUpdateStatus);
         });
     }
     catch (error) {

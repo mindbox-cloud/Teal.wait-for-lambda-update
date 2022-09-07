@@ -13,7 +13,7 @@ const enum AWSCredentials {
   AWS_SESSION_TOKEN = 'AWS_SESSION_TOKEN',
 };
 
-const functionNameInput = "function-name";
+const functionNameInput = "function_name";
 
 
 const setAWSCredentials = () : void => {
@@ -69,7 +69,7 @@ function run(): void {
         setFailed(error.message);
       }
       debug(JSON.stringify(data));
-      setOutput("update-status", data.Configuration?.LastUpdateStatus);
+      setOutput("function_name", data.Configuration?.LastUpdateStatus);
     });
     
   } catch (error) {
