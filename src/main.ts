@@ -2,12 +2,12 @@ import { getInput, setSecret, debug, setOutput, setFailed } from '@actions/core'
 import AWS from 'aws-sdk/global';
 import Lambda from 'aws-sdk/clients/lambda'
 
-const enum ExtraOptions {
+const enum AWSExtraOptions {
   HTTP_TIMEOUT = 'HTTP_TIMEOUT',
   MAX_RETRIES = 'MAX_RETRIES'
 };
 
-const enum Credentials {
+const enum AWSCredentials {
   AWS_ACCESS_KEY_ID = 'AWS_ACCESS_KEY_ID',
   AWS_SECRET_ACCESS_KEY = 'AWS_SECRET_ACCESS_KEY',
   AWS_SESSION_TOKEN = 'AWS_SESSION_TOKEN',
@@ -17,13 +17,13 @@ const functionNameInput = "function-name";
 
 
 const setAWSCredentials = () : void => {
-  const accessKeyId = getInput(Credentials.AWS_ACCESS_KEY_ID);
+  const accessKeyId = getInput(AWSCredentials.AWS_ACCESS_KEY_ID);
   setSecret(accessKeyId);
 
-  const secretAccessKey = getInput(Credentials.AWS_SECRET_ACCESS_KEY);
+  const secretAccessKey = getInput(AWSCredentials.AWS_SECRET_ACCESS_KEY);
   setSecret(secretAccessKey);
 
-  const sessionToken = getInput(Credentials.AWS_SESSION_TOKEN);
+  const sessionToken = getInput(AWSCredentials.AWS_SESSION_TOKEN);
   // Make sure we only mask if specified
   if (sessionToken) {
     setSecret(sessionToken);
@@ -37,13 +37,13 @@ const setAWSCredentials = () : void => {
 };
 
 const setAWSConfigOptions = () : void => {
-  const httpTimeout = getInput(ExtraOptions.HTTP_TIMEOUT);
+  const httpTimeout = getInput(AWSExtraOptions.HTTP_TIMEOUT);
 
   if (httpTimeout) {
     AWS.config.httpOptions = { timeout: parseInt(httpTimeout, 10) };
   }
 
-  const maxRetries = getInput(ExtraOptions.MAX_RETRIES);
+  const maxRetries = getInput(AWSExtraOptions.MAX_RETRIES);
 
   if (maxRetries) {
     AWS.config.maxRetries = parseInt(maxRetries, 10);

@@ -13,24 +13,15 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core_1 = __nccwpck_require__(2186);
 const global_1 = __importDefault(__nccwpck_require__(5512));
 const lambda_1 = __importDefault(__nccwpck_require__(3321));
-var ExtraOptions;
-(function (ExtraOptions) {
-    ExtraOptions["HTTP_TIMEOUT"] = "HTTP_TIMEOUT";
-    ExtraOptions["MAX_RETRIES"] = "MAX_RETRIES";
-})(ExtraOptions || (ExtraOptions = {}));
-var Credentials;
-(function (Credentials) {
-    Credentials["AWS_ACCESS_KEY_ID"] = "AWS_ACCESS_KEY_ID";
-    Credentials["AWS_SECRET_ACCESS_KEY"] = "AWS_SECRET_ACCESS_KEY";
-    Credentials["AWS_SESSION_TOKEN"] = "AWS_SESSION_TOKEN";
-})(Credentials || (Credentials = {}));
+;
+;
 const functionNameInput = "function-name";
 const setAWSCredentials = () => {
-    const accessKeyId = (0, core_1.getInput)(Credentials.AWS_ACCESS_KEY_ID);
+    const accessKeyId = (0, core_1.getInput)("AWS_ACCESS_KEY_ID" /* AWSCredentials.AWS_ACCESS_KEY_ID */);
     (0, core_1.setSecret)(accessKeyId);
-    const secretAccessKey = (0, core_1.getInput)(Credentials.AWS_SECRET_ACCESS_KEY);
+    const secretAccessKey = (0, core_1.getInput)("AWS_SECRET_ACCESS_KEY" /* AWSCredentials.AWS_SECRET_ACCESS_KEY */);
     (0, core_1.setSecret)(secretAccessKey);
-    const sessionToken = (0, core_1.getInput)(Credentials.AWS_SESSION_TOKEN);
+    const sessionToken = (0, core_1.getInput)("AWS_SESSION_TOKEN" /* AWSCredentials.AWS_SESSION_TOKEN */);
     // Make sure we only mask if specified
     if (sessionToken) {
         (0, core_1.setSecret)(sessionToken);
@@ -41,25 +32,12 @@ const setAWSCredentials = () => {
         sessionToken,
     };
 };
-var Inputs;
-(function (Inputs) {
-    Inputs["FunctionName"] = "FunctionName";
-    Inputs["InvocationType"] = "InvocationType";
-    Inputs["LogType"] = "LogType";
-    Inputs["ClientContext"] = "ClientContext";
-})(Inputs || (Inputs = {}));
-const getInputs = () => {
-    return Object.keys(Inputs).reduce((memo, prop) => {
-        const value = (0, core_1.getInput)(prop);
-        return value ? Object.assign(Object.assign({}, memo), { [prop]: value }) : memo;
-    }, {});
-};
 const setAWSConfigOptions = () => {
-    const httpTimeout = (0, core_1.getInput)(ExtraOptions.HTTP_TIMEOUT);
+    const httpTimeout = (0, core_1.getInput)("HTTP_TIMEOUT" /* AWSExtraOptions.HTTP_TIMEOUT */);
     if (httpTimeout) {
         global_1.default.config.httpOptions = { timeout: parseInt(httpTimeout, 10) };
     }
-    const maxRetries = (0, core_1.getInput)(ExtraOptions.MAX_RETRIES);
+    const maxRetries = (0, core_1.getInput)("MAX_RETRIES" /* AWSExtraOptions.MAX_RETRIES */);
     if (maxRetries) {
         global_1.default.config.maxRetries = parseInt(maxRetries, 10);
     }
@@ -87,6 +65,7 @@ function run() {
             (0, core_1.setFailed)(error.message);
     }
 }
+;
 run();
 
 
