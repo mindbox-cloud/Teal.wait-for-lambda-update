@@ -2,21 +2,21 @@ import { getInput, setSecret, debug, setOutput, setFailed } from '@actions/core'
 import AWS from 'aws-sdk/global';
 import Lambda from 'aws-sdk/clients/lambda'
 
-enum ExtraOptions {
+const enum ExtraOptions {
   HTTP_TIMEOUT = 'HTTP_TIMEOUT',
   MAX_RETRIES = 'MAX_RETRIES'
-}
+};
 
-enum Credentials {
+const enum Credentials {
   AWS_ACCESS_KEY_ID = 'AWS_ACCESS_KEY_ID',
   AWS_SECRET_ACCESS_KEY = 'AWS_SECRET_ACCESS_KEY',
   AWS_SESSION_TOKEN = 'AWS_SESSION_TOKEN',
-}
+};
 
-const functionNameInput = "function-name"
+const functionNameInput = "function-name";
 
 
-const setAWSCredentials = () => {
+const setAWSCredentials = () : void => {
   const accessKeyId = getInput(Credentials.AWS_ACCESS_KEY_ID);
   setSecret(accessKeyId);
 
@@ -36,21 +36,7 @@ const setAWSCredentials = () => {
   };
 };
 
-enum Inputs {
-  FunctionName = 'FunctionName',
-  InvocationType = 'InvocationType',
-  LogType = 'LogType',
-  ClientContext = 'ClientContext',
-}
-
-const getInputs = () => {
-  return Object.keys(Inputs).reduce((memo, prop) => {
-    const value = getInput(prop);
-    return value ? { ...memo, [prop]: value } : memo;
-  }, {} as any);
-}
-
-const setAWSConfigOptions = () => {
+const setAWSConfigOptions = () : void => {
   const httpTimeout = getInput(ExtraOptions.HTTP_TIMEOUT);
 
   if (httpTimeout) {
@@ -82,13 +68,13 @@ function run(): void {
       if (error){
         setFailed(error.message);
       }
-      debug(JSON.stringify(data))
+      debug(JSON.stringify(data));
       setOutput("update-status", data.Configuration?.LastUpdateStatus);
-    })
+    });
     
   } catch (error) {
-    if (error instanceof Error) setFailed(error.message)
+    if (error instanceof Error) setFailed(error.message);
   }
-}
+};
 
-run()
+run();
