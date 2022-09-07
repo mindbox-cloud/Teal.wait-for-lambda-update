@@ -24,4 +24,8 @@
 
 ## Output
 
-This step will store the JSON response from the Lambda function invocation in `outputs.update_status`.
+This step will store the `UpdateStatus` response from the Lambda function invocation in `outputs.update_status`.
+`UpdateStatus` could be:
+* `Successful`
+* `Failed`.
+For more info see https://aws.amazon.com/blogs/compute/tracking-the-state-of-lambda-functions/
