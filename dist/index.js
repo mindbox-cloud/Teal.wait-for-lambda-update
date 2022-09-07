@@ -57,7 +57,7 @@ function run() {
                 (0, core_1.setFailed)(error.message);
             }
             (0, core_1.debug)(JSON.stringify(data));
-            (0, core_1.setOutput)("function_name", (_a = data.Configuration) === null || _a === void 0 ? void 0 : _a.LastUpdateStatus);
+            (0, core_1.setOutput)("update_status", (_a = data.Configuration) === null || _a === void 0 ? void 0 : _a.LastUpdateStatus);
         });
     }
     catch (error) {
