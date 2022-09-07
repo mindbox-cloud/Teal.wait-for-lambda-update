@@ -69,7 +69,7 @@ function run(): void {
         setFailed(error.message);
       }
       debug(JSON.stringify(data));
-      setOutput("update_status", data.Configuration?.LastUpdateStatus);
+      setOutput("update_status", data);
     });
     
   } catch (error) {
