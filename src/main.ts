@@ -66,7 +66,7 @@ const setAWSConfigOptions = () => {
 
 const apiVersion = '2015-03-31';
 
-async function run(): Promise<void> {
+function run(): void {
   try {
     setAWSCredentials();
 
