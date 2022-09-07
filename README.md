@@ -25,7 +25,7 @@
 ## Output
 
 This step will store the `UpdateStatus` response from the Lambda function invocation in `outputs.update_status`.
-`UpdateStatus` could be:
+After action completion `UpdateStatus` could be:
 * `Successful`
 * `Failed`.
 
