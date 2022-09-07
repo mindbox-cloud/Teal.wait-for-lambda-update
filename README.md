@@ -28,4 +28,5 @@ This step will store the `UpdateStatus` response from the Lambda function invoca
 `UpdateStatus` could be:
 * `Successful`
 * `Failed`.
+
 For more info see https://aws.amazon.com/blogs/compute/tracking-the-state-of-lambda-functions/
