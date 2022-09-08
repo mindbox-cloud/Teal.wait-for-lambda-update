@@ -59,7 +59,7 @@ function run() {
             }
             (0, core_1.debug)(JSON.stringify(data));
             (0, core_1.setOutput)("update_status" /* outputs.updateStatus */, (_a = data.Configuration) === null || _a === void 0 ? void 0 : _a.LastUpdateStatus);
-            (0, core_1.setOutput)("is_successful" /* outputs.isSuccessful */, ((_b = data.Configuration) === null || _b === void 0 ? void 0 : _b.LastUpdateStatus) == 'Successful' ? true : false);
+            (0, core_1.setOutput)("is_successful" /* outputs.isSuccessful */, ((_b = data.Configuration) === null || _b === void 0 ? void 0 : _b.LastUpdateStatus) === 'Successful' ? true : false);
         });
     }
     catch (error) {

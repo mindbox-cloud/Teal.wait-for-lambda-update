@@ -75,7 +75,7 @@ function run(): void {
       }
       debug(JSON.stringify(data));
       setOutput(outputs.updateStatus, data.Configuration?.LastUpdateStatus);
-      setOutput(outputs.isSuccessful, data.Configuration?.LastUpdateStatus == 'Successful' ? true : false)
+      setOutput(outputs.isSuccessful, data.Configuration?.LastUpdateStatus === 'Successful' ? true : false)
     });
     
   } catch (error) {
