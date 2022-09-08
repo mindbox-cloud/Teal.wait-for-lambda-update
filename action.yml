@@ -26,7 +26,9 @@ inputs:
     required: false
 outputs:
   update_status:
-    description: "update status of the function"
+    description: "Update status of the function"
+  is_successful:
+    description: "Whether or not the update was seccessful"
 runs:
   using: 'node16'
   main: 'dist/index.js'

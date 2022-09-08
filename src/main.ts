@@ -13,6 +13,11 @@ const enum AWSCredentials {
   AWS_SESSION_TOKEN = 'AWS_SESSION_TOKEN',
 };
 
+const enum outputs {
+  updateStatus = "update_status",
+  isSuccessful = "is_successful"
+};
+
 const functionNameInput = "function_name";
 
 
@@ -69,7 +74,8 @@ function run(): void {
         setFailed(error.message);
       }
       debug(JSON.stringify(data));
-      setOutput("update_status", data);
+      setOutput(outputs.updateStatus, data.Configuration?.LastUpdateStatus);
+      setOutput(outputs.isSuccessful, data.Configuration?.LastUpdateStatus === 'Successful' ? true : false)
     });
     
   } catch (error) {
