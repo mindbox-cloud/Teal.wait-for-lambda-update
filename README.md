@@ -27,6 +27,6 @@
 | Key                     |   Type   | Description                                                             |
 | ----------------------- | :------: | ----------------------------------------------------------------------- |
 | `update_status`         | `string` | `UpdateStatus` response from the Lambda function invocation. Could be `Successful` or `Failed` after action completion |
-| `is_successful`         | `bool`   | Whether or not the update was seccessful                                |
+| `is_successful`         | `bool`   | Whether or not the update was successful                                |
 
 For more info about lambda function update see https://aws.amazon.com/blogs/compute/tracking-the-state-of-lambda-functions/
