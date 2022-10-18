@@ -5,18 +5,19 @@ import Lambda from 'aws-sdk/clients/lambda'
 const enum AWSExtraOptions {
   HTTP_TIMEOUT = 'HTTP_TIMEOUT',
   MAX_RETRIES = 'MAX_RETRIES'
-};
+}
 
 const enum AWSCredentials {
   AWS_ACCESS_KEY_ID = 'AWS_ACCESS_KEY_ID',
   AWS_SECRET_ACCESS_KEY = 'AWS_SECRET_ACCESS_KEY',
   AWS_SESSION_TOKEN = 'AWS_SESSION_TOKEN',
-};
+}
 
 const enum outputs {
   updateStatus = "update_status",
-  isSuccessful = "is_successful"
-};
+  isSuccessful = "is_successful",
+  version = "version"
+}
 
 const functionNameInput = "function_name";
 
@@ -75,12 +76,13 @@ function run(): void {
       }
       debug(JSON.stringify(data));
       setOutput(outputs.updateStatus, data.Configuration?.LastUpdateStatus);
-      setOutput(outputs.isSuccessful, data.Configuration?.LastUpdateStatus === 'Successful' ? true : false)
+      setOutput(outputs.isSuccessful, data.Configuration?.LastUpdateStatus === 'Successful')
+      setOutput(outputs.version, data.Configuration?.Version);
     });
     
   } catch (error) {
     if (error instanceof Error) setFailed(error.message);
   }
-};
+}
 
 run();

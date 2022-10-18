@@ -29,6 +29,8 @@ outputs:
     description: "Update status of the function"
   is_successful:
     description: "Whether or not the update was seccessful"
+  version:
+    description: "The version of the Lambda function"
 runs:
   using: 'node16'
   main: 'dist/index.js'
